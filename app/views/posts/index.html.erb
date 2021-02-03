@@ -1,0 +1,14 @@
+<% @posts.each do |post| %>
+  <div class ="contents">
+    <h2>Title:</h2>
+      <p><%= post.title %></p>
+    <h3>Content</h3>
+      <p><%= post.content %></p>
+    <h1>Author:</h1>
+    <p><%= post.author %></p>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Show', post_path(post) %></td>
+    <td><%= link_to 'Delete', post_path(post), method: :delete, data: {confirm: "Are you sure?"} %></td>
+  </div>
+  <% end %>
+
