@@ -1,25 +1,26 @@
-<div class="form-container">
+<h1>NEW POST</h1>
 <%=form_with model: @post do |form| %>
-  <p>
+
+  <div class="mb-3">
    <%= form.label :author%>
-   <%= form.text_field :author %>
-  </p>
-  <p>
+   <%= form.text_field :author, class:"form-control" %>
+  </div>
+
+  <div class="mb-3">
    <%= form.label :title %>
-   <%= form.text_field :title%>
-  </p>
-  <p>
+   <%= form.text_field :title, class:"form-control" %>
+  </div>
+
+  <div class="mb-3">
   <%= form.label :content %>
-  <%= form.text_area :content%>
- </p>
-  <p>
-   <%= form.submit "SUBMIT"%>
-  </p>
+  <%= form.text_area :content, class:"form-control" %>
+  </div>
+
+
+   <%= form.submit "Create Post", class:"btn btn-secondary"%>
+   <%= link_to 'Back', posts_path, class:"btn btn-dark" %>
  <%end%>
- </div>
 
-
- <p>
  <% if @post.errors.any? %>
   <ul>
     <% @post.errors.full_messages.each do |message| %>
@@ -27,4 +28,14 @@
  <% end %>
  </ul>
  <% end %>
-</p>
+
+
+
+<% if @post.errors.any? %>
+  <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+  <ul>
+    <% @post.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+<% end %>

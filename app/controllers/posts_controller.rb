@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
+      flash[:notice] = "Post was successfully created"
       redirect_to posts_path
     else
       render :new
@@ -28,15 +29,17 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-     redirect_to posts_path
+      flash[:notice] = "Post was successfully edited"
+     redirect_to post_path
     else
-     render :edit
+      render :edit
     end
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    flash[:notice] = "Post was successfully deleted."
     redirect_to posts_path
   end
 
