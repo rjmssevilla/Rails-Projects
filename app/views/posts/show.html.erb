@@ -1,12 +1,14 @@
-<p><%= notice %></p>
-<p>
- Author: <%= @post.author %>
-</p>
-<p>
- Title: <%= @post.title %>
-</p>
-<p>
- Content: <%= @post.content %>
-</p>
-<%= link_to 'Edit', edit_post_path, class:"btn btn-secondary" %>
-<%= link_to 'Back', posts_path, class:"btn btn-secondary" %>
+<% if notice %>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <%= notice %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% end %>
+<div class="bg-light p-5 rounded-lg m-3">
+  <h1 class="display-4"><%=@post.title%></h1>
+  <p class="lead">By: <%=@post.author%></p>
+  <hr class="my-4">
+  <p><%=@post.content %></p>
+  <%= link_to 'Edit', edit_post_path, class:"btn btn-secondary" %>
+  <%= link_to 'Back', posts_path, class:"btn btn-secondary" %>
+</div>

@@ -1,4 +1,13 @@
-<h1>NEW POST</h1>
+<h1>NEW POST</h1><br>
+<% if @post.errors.any? %>
+  <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+  <ul>
+    <% @post.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%=form_with model: @post do |form| %>
 
   <div class="mb-3">
@@ -13,7 +22,7 @@
 
   <div class="mb-3">
   <%= form.label :content %>
-  <%= form.text_area :content, class:"form-control" %>
+  <%= form.text_area :content, class:"form-control", rows:10 %>
   </div>
 
 
@@ -21,21 +30,3 @@
    <%= link_to 'Back', posts_path, class:"btn btn-dark" %>
  <%end%>
 
- <% if @post.errors.any? %>
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
- <% end %>
- </ul>
- <% end %>
-
-
-
-<% if @post.errors.any? %>
-  <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-  <ul>
-    <% @post.errors.each do |error| %>
-      <li><%= error.full_message %></li>
-    <% end %>
-  </ul>
-<% end %>
